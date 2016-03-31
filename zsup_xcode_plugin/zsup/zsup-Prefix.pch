@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'zsup' target in the 'zsup' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#endif

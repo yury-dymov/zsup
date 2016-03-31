@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="Z_SUP"
+      label="Z_SUP"
+      version="1.0.0.qualifier"
+      plugin="com.f1recat.supuploader">
+
+   <description url="https://zsup.mobi">
+      Z_SUP plugin enables Generated Code upload feauture for Unwired
+Workspace (Mobile SDK) versions 2.1.3+
+   </description>
+
+   <copyright url="https://zsup.mobi">
+      ZSUP (c) Yuri Dymov, 2013
+yuri@dymov.me
+   </copyright>
+
+   <license url="https://zsup.mobi">
+   	This software can be used for any purposes by any parties with following restrictions:
+
+1) ZSUP software can be distribited only from https://zsup.mobi. Redistribution is prohibited without author&apos;s written permission.
+2) Mobile application developed with ZSUP support must contain line &quot;ZSUP licensed from Yuri Dymov. http://zsup.mobi&quot; in application&apos;s &quot;About&quot; section in case it is implemented.
+3) Author is not responsible for anything bad happenned to involded parties
+   </license>
+
+   <plugin
+         id="com.f1recat.supuploader"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

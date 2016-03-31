@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Ancestors</key>
+	<array>
+		<string>com.apple.dt.unit.cocoaTouchApplication</string>
+	</array>
+	<key>Concrete</key>
+	<true/>
+	<key>Targets</key>
+	<array>
+    	<dict>
+        	<key>Configurations</key> 
+        	<dict>
+            	<key>Debug</key>
+            	<dict>
+                	<key>COPY_PHASE_STRIP</key>
+                	<string>NO</string>
+                	<key>GCC_DYNAMIC_NO_PIC</key>
+                	<string>NO</string>
+	            	<key>OTHER_LDFLAGS</key>	            	
+    	        	<string>-ObjC -lz -lstdc++</string>
+            	</dict>
+            	<key>Release</key>
+            	<dict>
+                	<key>COPY_PHASE_STRIP</key>
+                	<string>YES</string>
+                	<key>DEBUG_INFORMATION_FORMAT</key>
+                	<string>dwarf-with-dsym</string>
+	            	<key>OTHER_LDFLAGS</key>	            	
+    	        	<string>-ObjC -lz -lstdc++</string>                	
+            	</dict>
+        	</dict>			
+        	<key>Frameworks</key>
+        	<array>
+            	<string>CFNetwork</string>
+            	<string>MobileCoreServices</string>
+            	<string>SystemConfiguration</string>
+            	<string>AddressBook</string>
+            	<string>CoreFoundation</string>
+            	<string>QuartzCore</string>
+            	<string>Security</string>
+            	<string>MessageUI</string> 
+            </array>               
+
+        	<key>Name</key>
+        	<string>___PACKAGENAME___</string> <!-- Package Name. -->
+        	<key>ProductType</key>
+        	<string>com.apple.product-type.application</string> 
+        	<key>SharedSettings</key> <!-- Set Settings for Target. -->
+        	<dict>
+            	<key>ALWAYS_SEARCH_USER_PATHS</key>
+            	<string>YES</string>
+            	<key>GCC_ENABLE_OBJC_EXCEPTIONS</key>
+            	<string>YES</string>
+            	<key>PRODUCT_NAME</key>
+            	<string>$(TARGET_NAME)</string>
+        	</dict>
+    	</dict>
+	</array>
+    <key>Definitions</key>
+	<dict>
+        <key>CustomCallbackHandler.h</key>
+        <dict>
+            <key>Group</key>
+            <string>Z_SUPHelpers</string>        
+        </dict>
+        <key>CustomCallbackHandler.h:interface</key>
+        <string>@interface CustomCallbackHandler : SUPDefaultCallbackHandler &lt;SUPApplicationCallback>
+@end
+</string>                
+        <key>Z_SUPLocalizationManager.h</key>
+        <dict>
+            <key>Group</key>
+            <string>Z_SUPHelpers</string>
+        </dict>
+        <key>Z_SUPLocalizationManager.h:interface</key>
+        <string>@interface Z_SUPLocalizationManager : NSObject&lt;Z_SUPLocalizationProtocol>
+
+@property (nonatomic, retain) NSString *updateDatabaseDialogTitle;
+@property (nonatomic, retain) NSString *updateDatabaseDialogMessage;
+@property (nonatomic, retain) NSString *updateDatabaseDialogYesButtonText;
+@property (nonatomic, retain) NSString *updateDatabaseDialogNoButtonText;
+
+@property (nonatomic, retain) NSString *restartApplicationDialogTitle;
+@property (nonatomic, retain) NSString *restartApplicationDialogMessage;
+@property (nonatomic, retain) NSString *restartApplicationYesButtonText;
+@property (nonatomic, retain) NSString *restartApplicationNoButtonText;
+
+
++ (id)getInstance;
+
+@end
+</string>
+        <key>___VARIABLE_classPrefix:identifier___AppDelegate.m:initsb</key>
+        <string>- (void)setupSettingBundle {
+    Z_SettingBundle *settingBundle = [Z_SUPConnector getInstance].settingBundle;
+    [settingBundle unlockWithPin:DEBUG_PIN_CODE];
+    settingBundle.SUPApplicationIdentifier = @"__put_your_SUP_Application_identifier__";
+    settingBundle.SUPMessagingHost = @"__put_your_sup_or_relay_server_host_address_or_ip__";
+
+    /*
+        These are optional parameters listed with default values
+
+    settingBundle.SUPDatabaseClassName = NSStringFromClass([__put_your_database_class_here__ class]); // MANDATORY FOR MBO API !!!
+
+    settingBundle.SUPApplicationDomain = @"default";
+    settingBundle.SUPMessagingPort = 5001;
+    settingBundle.SUPMessagingProtocol = HTTP;
+    settingBundle.SUPMessagingFarm = @"0";
+    settingBundle.SUPMessagingURLSuffix =  @"";
+
+    settingBundle.SUPReplicationHost = settingBundle.SUPMessagingHost;
+    settingBundle.SUPReplicationPort = 2480;
+    settingBundle.SUPReplicationProtocol = HTTP;
+    settingBundle.SUPReplicationFarm = @"0";
+    settingBundle.SUPReplicationNetworkStreamParams = @"";
+
+    settingBundle.SUPObjectAPIUsed = YES; // Z_SUP by default generate application, which can use MBO and ODATA APIs at the same time 
+    settingBundle.SUPODataUsed = YES;
+
+    settingBundle.SUPAutoRegistration = YES;
+    settingBundle.SUPUsername = @"supAdmin";
+    settingBundle.SUPPassword = @"s3pAdmin";
+    settingBundle.SUPSecurityConfiguration = @"admin";
+    settingBundle.SUPActivationUser = @"";
+    settingBundle.SUPActivationCode = @"";
+
+    settingBundle.connectionTimeout = 30; // SECONDS
+*/
+}
+        </string>
+        <key>___VARIABLE_classPrefix:identifier___AppDelegate.m:applicationWillEnterForeground</key>
+        <string>- (void)applicationWillEnterForeground:(UIApplication *)application
+{
+    Z_SUPConnector *supConnector = [Z_SUPConnector getInstance];
+    [supConnector.settingBundle lock];
+    [supConnector stopConnection];
+}
+
+</string>
+        <key>Z_SUPLocalizationManager.m</key>
+        <dict>
+            <key>Path</key>
+            <string>Z_SUPLocalizationManager.m</string>
+            <key>Group</key>
+            <string>Z_SUPHelpers</string>            
+        </dict>
+        <key>CustomCallbackHandler.m</key>
+        <dict>
+            <key>Path</key>
+            <string>CustomCallbackHandler.m</string>
+            <key>Group</key>
+            <string>Z_SUPHelpers</string>
+        </dict>        
+        <key>___VARIABLE_classPrefix:identifier___AppDelegate.m:applicationdidFinishLaunchingWithOptions:setup</key>
+        <string>- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{    
+    Z_SUPConnector *supConnector = [Z_SUPConnector getInstance];
+    [supConnector setGlobalDebugLevel:Z_SUP_DEBUG_CONSOLE]; // Z_SUP_DEBUG_ALERT_VIEWS ; Z_SUP_DEBUG_NONE    
+    supConnector.localizationManager = [Z_SUPLocalizationManager getInstance];      
+    supConnector.customCallbackHandler = [[CustomCallbackHandler new] autorelease];
+    [self setupSettingBundle];    
+    [supConnector startConnection];
+
+    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
+    return YES;
+}
+</string>        
+        <key>___VARIABLE_classPrefix:identifier___AppDelegate.m:applicationDidBecomeActive:setup</key>
+        <string>Z_SUPConnector *conn = [Z_SUPConnector getInstance];
+[conn.settingBundle unlockWithPin:DEBUG_PIN_CODE];
+[conn startConnection];
+</string>
+		<key>___PACKAGENAME___-Prefix.pch</key>
+		<dict>
+			<key>Beginning</key>
+			<string>
+#import &lt;Availability.h>
+
+#ifndef __IPHONE_3_0
+	#warning &quot;This project uses features only available in iOS SDK 3.0 and later.&quot;
+#endif
+
+#ifdef __OBJC__
+	#pragma clang diagnostic ignored &quot;-Wmissing-selector-name&quot;   			
+#endif
+			</string>
+			<key>Group</key>
+			<string>Supporting Files</string>
+		</dict>
+	</dict>
+	<key>Description</key>
+	<string>This template provides a starting point for SUP application.</string>
+	<key>Identifier</key>
+	<string>com.apple.dt.unit.supApplication</string>
+	<key>Kind</key>
+	<string>Xcode.Xcode3.ProjectTemplateUnitKind</string>
+	<key>Nodes</key>
+	<array>
+		<string>___PACKAGENAME___-Prefix.pch</string>
+        <string>___VARIABLE_classPrefix:identifier___AppDelegate.m:import:setup</string>    
+        <string>___VARIABLE_classPrefix:identifier___AppDelegate.m:initsb</string>                
+        <string>___VARIABLE_classPrefix:identifier___AppDelegate.m:applicationdidFinishLaunchingWithOptions:setup</string>
+        <string>___VARIABLE_classPrefix:identifier___AppDelegate.m:applicationDidBecomeActive:setup</string>
+        <string>___VARIABLE_classPrefix:identifier___AppDelegate.m:applicationWillEnterForeground:setup</string>
+        <string>CustomCallbackHandler.h</string>
+        <string>CustomCallbackHandler.h:import</string>
+        <string>CustomCallbackHandler.h:interface</string>
+        <string>CustomCallbackHandler.m</string>      
+        <string>Z_SUPLocalizationManager.h</string>
+        <string>Z_SUPLocalizationManager.h:import</string>
+        <string>Z_SUPLocalizationManager.h:interface</string>
+        <string>Z_SUPLocalizationManager.m</string>  
+	</array>
+    <key>Options</key>
+    <array>
+        <dict>
+            <key>Identifier</key>
+            <string>supVersion</string>
+            <key>Name</key>
+            <string>SUP Version</string>
+            <key>Description</key>
+            <string>Please select you SUP version</string>
+            <key>Type</key>
+            <string>popup</string>
+            <key>Default</key>
+            <string>2.2</string>
+            <key>Units</key>
+            <dict>
+                <key>2.1.3</key>
+                <dict>
+                    <key>Definitions</key>
+                    <dict>
+                        <key>CustomCallbackHandler.h:import</key>
+                        <string>#import &lt;SUP213/Z_SUPConnector.h>
+#import &lt;SUP213/SUPApplicationCallback.h>
+#import &lt;SUP213/SUPDefaultCallbackHandler.h>
+#import &lt;SUP213/SUPVersion.h>
+
+                        </string>
+                        <key>Z_SUPLocalizationManager.h:import</key>
+                        <string>#import &lt;SUP213/Z_SUPLocalizationProtocol.h></string>
+                        <key>___VARIABLE_classPrefix:identifier___AppDelegate.m:import:setup</key>
+                        <string>#import &lt;SUP213/Z_SUPConnector.h>
+#import "CustomCallbackHandler.h"                                                
+#import "Z_SUPLocalizationManager.h"
+#define DEBUG_PIN_CODE @"4t934g3j0238ru238t2g"                        
+                        </string>
+                    </dict>
+                    <key>Targets</key>
+                    <array>
+                        <dict>
+                            <key>Frameworks</key>
+                            <array>
+                                <string>SUP213</string>
+                            </array>
+                        </dict>
+                    </array>
+                </dict>                
+                <key>2.2</key>
+                <dict>
+                    <key>Targets</key>
+                    <array>
+                        <dict>
+                            <key>Frameworks</key>
+                            <array>
+                                <string>SUP22</string>
+                            </array>
+                        </dict>
+                    </array>
+                    <key>Definitions</key>
+                    <dict>
+                        <key>Z_SUPLocalizationManager.h:import</key>
+                        <string>#import &lt;SUP22/Z_SUPLocalizationProtocol.h></string>                    
+                        <key>CustomCallbackHandler.h:import</key>
+                        <string>#import &lt;SUP22/Z_SUPConnector.h>
+#import &lt;SUP22/SUPApplicationCallback.h>
+#import &lt;SUP22/SUPDefaultCallbackHandler.h>
+#import &lt;SUP22/SUPVersion.h>
+
+                        </string>
+                        <key>___VARIABLE_classPrefix:identifier___AppDelegate.m:import:setup</key>
+                        <string>#import &lt;SUP22/Z_SUPConnector.h>
+#import "CustomCallbackHandler.h"  
+#import "Z_SUPLocalizationManager.h"                      
+#define DEBUG_PIN_CODE @"4t934g3j0238ru238t2g"                        
+                        </string>
+                    </dict>
+                </dict>                                
+            </dict>
+        </dict>
+    </array>
+</dict>
+</plist>
