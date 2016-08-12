@@ -6,3 +6,5 @@ Sybase Unwired Platform / SAP Mobile Platform extension
 * Ruby-on-Rails website with hosted eclipse plugin and zsup files. Enables generated code exchange between Sybase Unwired Workspace / SAP Mobile SDK and Xcode.
 * Eclipse plugin, which adds source code upload to RoR website feature.
 * Script to build zsup for Xcode installer.
+
+2012
